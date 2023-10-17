@@ -1,0 +1,111 @@
+#include <assert.h>
+#include <ctype.h>
+#include <limits.h>
+#include <math.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* readline();
+char* ltrim(char*);
+char* rtrim(char*);
+char** split_string(char*);
+
+int parse_int(char*);
+
+/*
+ * Complete the 'twoStacks' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER maxSum
+ *  2. INTEGER_ARRAY a
+ *  3. INTEGER_ARRAY b
+ */
+
+// int twoStacks(int maxSum, int a_count, int* a, int b_count, int* b) {
+
+// }
+
+int main()
+{
+  
+
+long long int c, i, g, m, n, x, la, lb;
+
+long long int a[100010], b[100010];
+
+scanf("%lld", &g);
+
+while (g--) 
+    {
+
+    la = lb = 0;
+
+    scanf("%lld%lld%lld", &n, &m, &x);
+
+    scanf("%lld", &a[1]);
+
+    for (i = 1; ++i <= n;) 
+
+            {
+
+        scanf("%lld", &a[i]);
+
+        a[i] += a[i - 1];
+
+    }
+
+    scanf("%lld", &b[1]);
+
+    for (i = 1; ++i <= m;)
+
+            {
+
+        scanf("%lld", &b[i]);
+
+        b[i] += b[i - 1];
+
+    }
+
+    la = 1;
+
+    while (la <= n && a[la] <= x)
+
+        la++;
+
+    la--;
+
+    c = la;
+
+    lb = 1;
+
+    while (lb <= m && b[lb] <= x)
+
+            {
+
+        if (la && b[lb] + a[la] > x)
+
+            la--;
+
+        else
+
+                    {
+
+            if (c < la + lb)
+
+                c = la + lb;
+
+            lb++;
+
+        }
+
+    }
+
+    printf("%lld\n", c);
+}
+return 0;
+}
